@@ -1,6 +1,17 @@
-const SUPABASE_URL = window.__ENV__?.SUPABASE_URL ?? "";
-const SUPABASE_ANON_KEY = window.__ENV__?.SUPABASE_ANON_KEY ?? "";
-const API_BASE_URL = window.__ENV__?.API_BASE_URL ?? "";
+const PROD_DEFAULTS = {
+  SUPABASE_URL: "https://ftrrrbptkzinirtqvfxg.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0cnJyYnB0a3ppbmlydHF2ZnhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyODc3OTEsImV4cCI6MjA5NDg2Mzc5MX0.JSLiWNEIm7f0dNpt8Ik3F66jUiDGOUqBnw8Dj27NvHA",
+  API_BASE_URL: "https://homeverse-hu2r.onrender.com"
+};
+
+function pickValue(value, fallback) {
+  if (!value || value.includes("YOUR_") || value.includes("your_project_ref")) return fallback;
+  return value;
+}
+
+const SUPABASE_URL = pickValue(window.__ENV__?.SUPABASE_URL, PROD_DEFAULTS.SUPABASE_URL);
+const SUPABASE_ANON_KEY = pickValue(window.__ENV__?.SUPABASE_ANON_KEY, PROD_DEFAULTS.SUPABASE_ANON_KEY);
+const API_BASE_URL = pickValue(window.__ENV__?.API_BASE_URL, PROD_DEFAULTS.API_BASE_URL);
 
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY || !API_BASE_URL) {
   alert("Missing frontend env values. Set window.__ENV__ in env.js.");

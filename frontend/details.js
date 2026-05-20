@@ -1,4 +1,7 @@
-const API_BASE_URL = window.__ENV__?.API_BASE_URL ?? "";
+const API_BASE_URL =
+  !window.__ENV__?.API_BASE_URL || window.__ENV__?.API_BASE_URL.includes("YOUR_")
+    ? "https://homeverse-hu2r.onrender.com"
+    : window.__ENV__?.API_BASE_URL;
 
 function currency(value) {
   return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(value);
