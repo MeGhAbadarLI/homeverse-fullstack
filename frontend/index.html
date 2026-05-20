@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homeverse Demo App</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Homeverse Demo</h1>
+    <div id="authControls"></div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Add Property</h2>
+      <p class="muted">Sign in with Google to add listings.</p>
+      <form id="propertyForm">
+        <input name="title" placeholder="Title" required minlength="3" />
+        <textarea name="description" placeholder="Description" required minlength="10"></textarea>
+        <input name="city" placeholder="City" required />
+        <input name="address" placeholder="Address" required />
+        <input type="number" name="price" placeholder="Price" required min="1" />
+        <div class="grid2">
+          <input type="number" name="bedrooms" placeholder="Bedrooms" required min="0" />
+          <input type="number" name="bathrooms" placeholder="Bathrooms" required min="0" />
+        </div>
+        <input type="number" name="area_sqft" placeholder="Area (sqft)" required min="100" />
+        <input name="image_url" placeholder="Image URL" required />
+        <button type="submit">Add Property</button>
+      </form>
+      <p id="formMessage" class="muted"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Search Properties</h2>
+      <form id="searchForm" class="filters">
+        <input name="search" placeholder="Search by title/description" />
+        <input name="city" placeholder="City" />
+        <input type="number" name="minPrice" placeholder="Min Price" min="0" />
+        <input type="number" name="maxPrice" placeholder="Max Price" min="0" />
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Property Listings</h2>
+      <div id="propertyList" class="cards"></div>
+    </section>
+  </main>
+
+  <script src="./env.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
